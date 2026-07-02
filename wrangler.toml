@@ -1,0 +1,10 @@
+# ===== Cloudflare Pages 배포 설정 파일 =====
+# 이 파일은 우리 웹사이트를 Cloudflare Pages에 올릴 때 사용하는 설정입니다.
+
+# 프로젝트 이름 (Cloudflare 대시보드에서 보이는 이름)
+name = "my-local-info"
+
+# 배포할 폴더 위치
+# Next.js가 "npm run build" 명령어를 실행하면 "out" 폴더에 완성된 웹사이트 파일들이 생성됩니다.
+# wrangler는 이 "out" 폴더를 Cloudflare에 올립니다.
+pages_build_output_dir = "out"
