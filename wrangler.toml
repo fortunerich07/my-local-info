@@ -8,3 +8,6 @@ name = "my-local-info"
 # Next.js가 "npm run build" 명령어를 실행하면 "out" 폴더에 완성된 웹사이트 파일들이 생성됩니다.
 # wrangler는 이 "out" 폴더를 Cloudflare에 올립니다.
 pages_build_output_dir = "out"
+
+compatibility_date = "2024-11-01"
+compatibility_flags = [ "nodejs_compat_v2" ]

@@ -1,4 +1,5 @@
 import localInfoData from "../../public/data/local-info.json";
+import Link from "next/link";
 
 // --- 타입 정의 ---
 type InfoItem = {
@@ -48,7 +49,7 @@ function EventCard({ item, index }: { item: InfoItem; index: number }) {
 
   return (
     <a
-      href={`/detail/${item.id}/`}
+      href="/blog/"
       className="group flex flex-col bg-white rounded-2xl border border-zinc-200 p-4 hover:border-orange-400 hover:shadow-lg transition-all duration-200"
     >
       {/* 카드 헤더: 아이콘 + 이름 + 카테고리 + 날짜 */}
@@ -103,7 +104,7 @@ function BenefitCard({ item, index }: { item: InfoItem; index: number }) {
 
   return (
     <a
-      href={`/detail/${item.id}/`}
+      href="/blog/"
       className="group flex flex-col bg-white rounded-2xl border border-zinc-200 p-4 hover:border-orange-400 hover:shadow-lg transition-all duration-200"
     >
       {/* 카드 헤더 */}
@@ -178,16 +179,18 @@ export default function Home() {
       {/* ===== 상단 네비게이션 바 ===== */}
       <header className="bg-white border-b border-zinc-200 sticky top-0 z-20">
         <div className="max-w-3xl mx-auto px-4 py-3.5 flex items-center justify-between">
-          <div className="flex items-center gap-2">
+          <Link href="/" className="flex items-center gap-2 hover:opacity-70 transition-opacity">
             <span className="text-xl">🏘️</span>
             <span className="font-black text-zinc-900 text-sm tracking-tight">성남시 생활 정보</span>
-          </div>
-          <div className="flex items-center gap-2">
-            <span className="hidden sm:flex items-center gap-1.5 text-[11px] font-medium text-zinc-500">
-              <span className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse" />
-              실시간 업데이트 중
-            </span>
-          </div>
+          </Link>
+          <nav className="flex items-center gap-4">
+            <Link href="/" className="text-xs font-bold text-orange-500">
+              홈
+            </Link>
+            <Link href="/blog/" className="text-xs font-bold text-zinc-500 hover:text-orange-500 transition-colors">
+              블로그
+            </Link>
+          </nav>
         </div>
       </header>
 
