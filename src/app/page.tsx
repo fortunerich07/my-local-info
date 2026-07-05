@@ -1,5 +1,6 @@
 import localInfoData from "../../public/data/local-info.json";
 import Link from "next/link";
+import AdBanner from "@/components/AdBanner";
 
 // --- 타입 정의 ---
 type InfoItem = {
@@ -47,11 +48,33 @@ function EventCard({ item, index }: { item: InfoItem; index: number }) {
   const icon = EVENT_ICONS[item.id] ?? "🎉";
   const badgeColor = EVENT_BADGE_COLORS[index % EVENT_BADGE_COLORS.length];
 
+  const eventSchema = {
+    "@context": "https://schema.org",
+    "@type": "Event",
+    "name": item.name,
+    "startDate": item.startDate,
+    "endDate": item.endDate,
+    "location": {
+      "@type": "Place",
+      "name": item.location,
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "성남시",
+        "addressCountry": "KR",
+      },
+    },
+    "description": item.summary,
+  };
+
   return (
     <a
       href="/blog/"
       className="group flex flex-col bg-white rounded-2xl border border-zinc-200 p-4 hover:border-orange-400 hover:shadow-lg transition-all duration-200"
     >
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(eventSchema) }}
+      />
       {/* 카드 헤더: 아이콘 + 이름 + 카테고리 + 날짜 */}
       <div className="flex items-start gap-3">
         {/* 아이콘 */}
@@ -102,11 +125,26 @@ function BenefitCard({ item, index }: { item: InfoItem; index: number }) {
   ];
   const accent = accentColors[index % accentColors.length];
 
+  const benefitSchema = {
+    "@context": "https://schema.org",
+    "@type": "GovernmentService",
+    "name": item.name,
+    "description": item.summary,
+    "provider": {
+      "@type": "GovernmentOrganization",
+      "name": item.location || "공공데이터포털",
+    },
+  };
+
   return (
     <a
       href="/blog/"
       className="group flex flex-col bg-white rounded-2xl border border-zinc-200 p-4 hover:border-orange-400 hover:shadow-lg transition-all duration-200"
     >
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(benefitSchema) }}
+      />
       {/* 카드 헤더 */}
       <div className="flex items-start gap-3">
         {/* 아이콘 */}
@@ -190,6 +228,9 @@ export default function Home() {
             <Link href="/blog/" className="text-xs font-bold text-zinc-500 hover:text-orange-500 transition-colors">
               블로그
             </Link>
+            <Link href="/about/" className="text-xs font-bold text-zinc-500 hover:text-orange-500 transition-colors">
+              소개
+            </Link>
           </nav>
         </div>
       </header>
@@ -247,6 +288,9 @@ export default function Home() {
             ))}
           </div>
         </section>
+
+        {/* 광고 배치 */}
+        <AdBanner />
 
         {/* 안내 배너 */}
         <div className="bg-amber-50 border border-amber-200 rounded-2xl px-4 py-3.5 flex items-start gap-3">

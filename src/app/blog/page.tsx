@@ -25,6 +25,9 @@ export default function BlogListPage() {
             <Link href="/blog/" className="text-xs font-bold text-orange-500 transition-colors">
               블로그
             </Link>
+            <Link href="/about/" className="text-xs font-bold text-zinc-500 hover:text-orange-500 transition-colors">
+              소개
+            </Link>
           </nav>
         </div>
       </header>
