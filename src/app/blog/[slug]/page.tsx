@@ -3,8 +3,9 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
-import localInfoData from "@/../../public/data/local-info.json";
+import localInfoData from "../../../../public/data/local-info.json";
 import AdBanner from "@/components/AdBanner";
+import CoupangBanner from "@/components/CoupangBanner";
 
 type Props = {
   params: Promise<{ slug: string }>;
@@ -185,6 +186,7 @@ export default async function BlogDetailPage({ params }: Props) {
 
           {/* 광고 배치 */}
           <AdBanner />
+          <CoupangBanner />
 
           {/* E-E-A-T 보강 영역 */}
           <div className="border-t border-zinc-100 pt-6 mt-8 space-y-4">
